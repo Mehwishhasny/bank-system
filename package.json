@@ -1,6 +1,6 @@
 {
-  "name": "bank-system",
-  "version": "1.0.0",
+  "name": "sm-bank-system",
+  "version": "1.0.2",
   "description": "Banking system using Inquirer and Faker.",
   "main": "index.js",
   "type": "module",

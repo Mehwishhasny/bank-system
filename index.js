@@ -39,7 +39,7 @@ let myBank = new BankAccountData();
 
 console.log(client);
 */
-for (let i = 1; i <= 5; i++) {
+for (let i = 1; i <= 10; i++) {
     let fName = faker.person.firstName("female");
     let lName = faker.person.lastName();
     let email = faker.internet.email();
@@ -48,6 +48,7 @@ for (let i = 1; i <= 5; i++) {
     myBank.addCustomer(client);
     myBank.addAccount({ accNumber: client.accNumber, balance: 1000 * i });
 }
+console.log(chalk.bgRed(chalk.yellow.bold("Welcome to XYZ banking system!")));
 //Bank function
 async function bankSystem(bank) {
     let service = await inquirer.prompt({
@@ -68,7 +69,7 @@ async function bankSystem(bank) {
         }
         if (acc) {
             let name = myBank.customer.find((item) => item.accNumber == acc?.accNumber);
-            console.log(chalk.green.bold(`Dear ${(name?.firstName)} ${(name?.lastName)}, your balance is ${chalk.blue("$", acc.balance)}.`));
+            console.log(chalk.green.bold(`Dear ${(name?.firstName)} ${(name?.lastName)}, your balance is ${chalk.blue("$", acc.balance)}.\n${chalk.magenta("Thankyou for choosing XYZ bank!")}`));
         }
     }
     if (service.selection == "Cash Deposit") {
@@ -90,7 +91,7 @@ async function bankSystem(bank) {
             let newBalance = acc.balance + ans.rupeees;
             bank.transaction({ accNumber: acc.accNumber, balance: newBalance });
             let name = myBank.customer.find((item) => item.accNumber == acc?.accNumber);
-            console.log(chalk.green.bold(`Dear ${(name?.firstName)} ${(name?.lastName)}, you deposit ${chalk.yellow("$", ans.rupeees)} and your balance is ${chalk.blue("$", newBalance)}.`));
+            console.log(chalk.green.bold(`Dear ${(name?.firstName)} ${(name?.lastName)}, you deposit ${chalk.yellow("$", ans.rupeees)} and your balance is ${chalk.blue("$", newBalance)}.\n${chalk.magenta("Thankyou for choosing XYZ bank!")}`));
         }
     }
     if (service.selection == "Cash Withdrawl") {
@@ -116,7 +117,7 @@ async function bankSystem(bank) {
             let newBalance = acc.balance - ans.rupeees;
             bank.transaction({ accNumber: acc.accNumber, balance: newBalance });
             let name = myBank.customer.find((item) => item.accNumber == acc?.accNumber);
-            console.log(chalk.green.bold(`Dear ${(name?.firstName)} ${(name?.lastName)}, you withdraw ${chalk.yellow("$", ans.rupeees)} and your balance is ${chalk.blue("$", newBalance)}.`));
+            console.log(chalk.green.bold(`Dear ${(name?.firstName)} ${(name?.lastName)}, you withdraw ${chalk.yellow("$", ans.rupeees)} and your balance is ${chalk.blue("$", newBalance)}.\n${chalk.magenta("Thankyou for choosing XYZ bank!")}`));
         }
     }
 }
